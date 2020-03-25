@@ -46,7 +46,6 @@ handler.get(async (req, res) => {
 			}
 		}
 	]).toArray();
-	
 	res.json(doc);
 });
 

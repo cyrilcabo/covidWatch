@@ -35,7 +35,7 @@ const useStyle = makeStyles( theme => ({
 		}
 	},
 	title: {
-		flexGrow: 1,
+		flex: 1,
 	}
 }));
 
@@ -43,10 +43,10 @@ const NavBar = () => {
 	const classes = useStyle();
 	const [toggle, toggleDrawer] = useState(false);
 	let navs = [{name: "Home", link: "/"}, {name: "Announcements", link: "/announcements"}, {name: "About", link: "/about"}];
-	let navLinks = (style) => navs.map((item, index) => {
-		return <Link href={item.link}>
+	let navLinks = navs.map((item, index) => {
+		return <Link href={item.link} key={index}>
 					<Button className={classes.linkContainer} >
-						<Typography variant="h6" className={style}>
+						<Typography variant="h5" component="h6" className={classes.links}>
 							{item.name}
 						</Typography>
 					</Button>
@@ -64,11 +64,11 @@ const NavBar = () => {
 								</IconButton>
 							</Hidden>
 							<NavDrawer nav={navs} toggle={toggle} toggleDrawer={drawerToggle}/>
-							<Typography variant="h6" className={classes.title} >
+							<Typography variant="h5" component="h6" className={classes.title} >
 								CovidWatch
 							</Typography>
 							<Hidden xsDown>
-								{navLinks(classes.links)}
+								{navLinks}
 							</Hidden>
 						</Toolbar>	
 				</Container>

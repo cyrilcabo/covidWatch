@@ -33,7 +33,7 @@ const Body = (props) => {
 		<div className={classes.root}>
 			<br />
 			<Container className={classes.fullWidth}>
-				<Paper className={[classes.main, props.className]}>
+				<Paper className={[classes.main, props.className].join(' ')}>
 					{props.children}
 				</Paper>
 			</Container>

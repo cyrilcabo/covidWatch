@@ -27,7 +27,7 @@ export function fetchRegions(rid, loc) {
 export function fetchAll () {
 	return {
 		type: "FETCH_ALL",
-		payload: fetch(`http://localhost:3000/api/getAll`).then(data =>  data.json()).then(result => {
+		payload: fetch(`http://localhost:3000/api/getall`).then(data =>  data.json()).then(result => {
 			return {
 				result: result,
 				loc: {

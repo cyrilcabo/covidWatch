@@ -1,6 +1,9 @@
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import {createMuiTheme} from '@material-ui/core/styles';
 import Head from 'next/head';
 import NavBar from './navbar';
+
+const theme = createMuiTheme();
 
 const Layout = (props) => {
 	return (
@@ -8,7 +11,7 @@ const Layout = (props) => {
 			<Head>
 				<title> CovidWatch </title>
 			</Head>
-			<ThemeProvider>
+			<ThemeProvider theme={theme}>
 				<NavBar />
 				{props.children}
 			</ThemeProvider>

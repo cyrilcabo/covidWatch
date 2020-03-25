@@ -5,19 +5,6 @@ const handler = nextConnect();
 
 handler.use(middleware);
 
-const db = [
-	{
-		name: "Maasin City",
-		type: "Local",
-		content: "This is my first announcement!",
-	},
-	{
-		name: "Borongan City",
-		type: "Local",
-		content: "This is a national broadcast!",
-	},
-];
-
 handler.get(async (req, res) => {
 	const {id, index} = req.query;
 	const doc = await req.db.collection("localposts").aggregate([

@@ -28,7 +28,6 @@ const PostsContainer = (props) => {
 	const more = (props.filter != "national")
 					?(!!props.posts.local[props.items.name] && props.posts.local[props.items.name].hasMore)
 					:props.posts.national.hasMore;
-	console.log(props.posts.local[props.items.name]);
 	const posts = items.map(item => {
 		return <Grid item xs={12} container>
 			<Post name={item.name} type={item.type} content={item.content} />
@@ -45,9 +44,11 @@ const PostsContainer = (props) => {
 				width: "100%",
 				display: "flex",
 				flexDirection: "column",
+				justifyContent: "center",
+				alignItems: "center",
 			}}
 		>
-			{posts}
+			{(items.length) ?{posts} :<h5 style={{color: "white"}}> Sorry no posts are available </h5>}
 		</InfiniteScroll>
 	);
 }

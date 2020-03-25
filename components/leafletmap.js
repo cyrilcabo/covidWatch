@@ -27,7 +27,6 @@ const LeafletMap = (props) => {
 			zoom={zoom} 
 			dragging={true} 
 			doubleClickZoom={true}  
-			//bounds={[[112.16, 4.38], [127.02, 21.5]]}
 		>
 				<TileLayer
 					attribution={'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'}

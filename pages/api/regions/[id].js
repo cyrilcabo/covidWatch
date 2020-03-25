@@ -7,7 +7,6 @@ handler.use(middleware);
 
 handler.get(async (req, res) => {
 	const {id} = req.query;
-	//const doc = await req.db.collection("regions").find({_id: id}).project({ cities: 0 }).toArray();
 	const doc = await req.db.collection("regions").aggregate([
 		{
 			$match: {_id: id},

@@ -1,7 +1,6 @@
 import {combineReducers, createStore, applyMiddleware} from 'redux';
 import {store} from '../store';
 import promise from 'redux-promise-middleware';
-import logger from 'redux-logger';
 //lacks fetch
 
 function resultsReducer (initialState=store.results, action) {
@@ -82,7 +81,7 @@ const reducers = combineReducers({
 
 
 const makeStore = (state=store) => {
-	return createStore(reducers, state, applyMiddleware(promise, logger));
+	return createStore(reducers, state, applyMiddleware(promise));
 }
 
 export default makeStore;

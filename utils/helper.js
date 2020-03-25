@@ -85,3 +85,6 @@
 	
 	driver_URI: mongodb+srv://admin_covidwatch:<password>@covidwatch-cb7tc.mongodb.net/test?retryWrites=true&w=majority
 	mongoshell: mongo "mongodb+srv://covidwatch-cb7tc.mongodb.net/test"  --username admin_covidwatch
+	localdev: mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb
+	
+	'mongodb+srv://admin_covidwatch:youcantseeME002@covidwatch-cb7tc.mongodb.net/test?retryWrites=true&w=majority'

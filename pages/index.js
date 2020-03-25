@@ -50,7 +50,6 @@ const Index = (props) => {
 	const resetState = async () => {
 		setView("Philippines");
 	}
-	console.log(props.results);
 	const setSearch = async () => {
 		if (loc.name) {
 			if (!props.results[loc.name]) {
@@ -104,7 +103,7 @@ const Index = (props) => {
 }
 
 Index.getInitialProps = async ({req, store}) => {
-	if (req || !store.getState().results["Philippines"].result.length) {
+	if (req || !store.getState().results["Philippines"]) {
 		await store.dispatch(fetchAll());
 	}
 	if (!store.getState().search.length) {
