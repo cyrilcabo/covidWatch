@@ -9,10 +9,10 @@ const useStyle = makeStyles({
 
 const LocationDetails = (props) => {
 	const classes = useStyle();
-	const data = props.items.map((item) => {
+	const data = props.items.map((item, i) => {
 		const {name, state} = item;
 		return (
-			<TableRow>
+			<TableRow key={i}>
 				<TableCell> {name} </TableCell>
 				<TableCell> {state.confirmed} </TableCell>
 				<TableCell> {state.pum} </TableCell>

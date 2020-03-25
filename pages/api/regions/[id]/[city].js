@@ -1,14 +1,7 @@
-import nextConnect from 'next-connect';
-import middleware from '../../../../utils/middleware';
+import database from '../../../../utils/middleware';
 
-const handler = nextConnect();
-
-handler.use(middleware);
-
-handler.get( async (req, res) => {
+export default async function getCity (req, res) {
 	const {id, city} = req.query;
-	const doc = await req.db.collection("regions").find({_id: id}).project({ cities: {$elemMatch: {_id: city} }}).toArray();
-	res.json(doc[0].cities);
-});
-
-export default handler;
+	const doc = await database(req, res).then(db => db.collection("regions").find({_id: id}).project({ cities: {$elemMatch: {_id: city} }}).toArray());
+	res.status(200).json(doc[0].cities);
+};

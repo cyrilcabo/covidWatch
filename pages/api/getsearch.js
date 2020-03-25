@@ -1,12 +1,7 @@
-import middleware from '../../utils/middleware';
-import nextConnect from 'next-connect';
+import database from '../../utils/middleware';
 
-const handler = nextConnect();
-
-handler.use(middleware);
-
-handler.get( async (req, res) => {
-	let regions = await req.db.collection("regions").aggregate([
+export default async function getSearch (req, res) {
+	const regions = await database(req, res).then(db => db.collection("regions").aggregate([
 		{
 			$project:  {
 				_id: 0,
@@ -16,8 +11,8 @@ handler.get( async (req, res) => {
 				type: "region",
 			}
 		}
-	]).toArray();
-	let cities = await req.db.collection("regions").aggregate([ 
+	]).toArray());
+	const cities = await database(req, res).then(db => db.collection("regions").aggregate([ 
 		{
 			$group: {
 				_id: 0,
@@ -50,9 +45,6 @@ handler.get( async (req, res) => {
 				}
 			}
 		}	
-	]).toArray();
-	res.json([...cities[0].cities, ...regions]);
-	res.send("it worked");
-});
-
-export default handler;
+	]).toArray());
+	res.status(200).json([...cities[0].cities, ...regions]);
+};

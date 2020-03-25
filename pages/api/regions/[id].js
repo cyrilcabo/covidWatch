@@ -1,13 +1,8 @@
-import nextConnect from 'next-connect';
-import middleware from '../../../utils/middleware';
+import database from '../../../utils/middleware';
 
-const handler = nextConnect();
-
-handler.use(middleware);
-
-handler.get(async (req, res) => {
+export default async function getRegions (req, res) {
 	const {id} = req.query;
-	const doc = await req.db.collection("regions").aggregate([
+	const doc = await database(req, res).then(db => db.collection("regions").aggregate([
 		{
 			$match: {_id: id},
 		},
@@ -30,9 +25,6 @@ handler.get(async (req, res) => {
 				}
 			}
 		}
-	]).toArray();
-	
-	res.json(doc);
-});
-
-export default handler;
+	]).toArray());
+	res.status(200).json(doc);
+};

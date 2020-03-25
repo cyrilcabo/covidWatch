@@ -1,12 +1,7 @@
-import middleware from '../../utils/middleware';
-import nextConnect from 'next-connect';
+import database from '../../utils/middleware';
 
-const handler = nextConnect();
-
-handler.use(middleware);
-
-handler.get(async (req, res) => {
-	let doc = await req.db.collection("regions").aggregate([
+export default async function getAll (req, res) {
+	const doc = await database(req, res).then(db => db.collection("regions").aggregate([
 		{
 			$group: {
 				_id: 0,
@@ -45,8 +40,6 @@ handler.get(async (req, res) => {
 				}
 			}
 		}
-	]).toArray();
-	res.json(doc);
-});
-
-export default handler;
+	]).toArray());
+	res.status(200).json(doc);
+};

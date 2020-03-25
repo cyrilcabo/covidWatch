@@ -1,14 +1,7 @@
-import middleware from '../../../utils/middleware';
-import nextConnect from 'next-connect';
+import database from '../../../utils/middleware';
 
-const handler = nextConnect();
-
-handler.use(middleware);
-
-handler.get(async (req, res) => {
+export default async function getNationalPosts (req, res) {
 	const {index} = req.query;
-	const doc = await req.db.collection("nationalposts").find().limit(5).skip(parseInt(index)).toArray();
-	res.json({result: doc, index: index});
-});
-
-export default handler;
+	const doc = await database(req, res).then(db => db.collection("nationalposts").find().limit(5).skip(parseInt(index)).toArray());
+	res.status(200).json({result: doc, index: index});
+};

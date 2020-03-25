@@ -1,13 +1,8 @@
-import middleware from '../../../../../utils/middleware';
-import nextConnect from 'next-connect';
+import database from '../../../../../utils/middleware';
 
-const handler = nextConnect();
-
-handler.use(middleware);
-
-handler.get(async (req, res) => {
+export default async function getCityPosts (req, res) {
 	const {id, city, index} = req.query;
-	const doc = await req.db.collection("localposts").aggregate([
+	const doc = await database(req, res).then(db => db.collection("localposts").aggregate([
 		{
 			$match: {
 				_id: id,
@@ -39,8 +34,6 @@ handler.get(async (req, res) => {
 				},
 			}
 		}
-	]).toArray();
-	res.json({result: doc[0].cities[0], index: index});
-});
-
-export default handler;
+	]).toArray());
+	res.status(200).json({result: doc[0].cities[0], index: index});
+};
