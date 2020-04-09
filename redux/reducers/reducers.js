@@ -72,11 +72,37 @@ function postsReducer (initialState=store.posts, action) {
 	}
 }
 
+function adminReducers (initialState = store.admin, action) {
+	switch(action.type) {
+		case "FETCH_ADMIN_STATE_FULFILLED":
+			return {
+				...initialState,
+				state: {
+					country: action.payload[0][0],
+					region: action.payload[1][0],
+					city: action.payload[2][0],
+				}
+			}
+		case "FETCH_ADMIN_STATE_REJECTED":
+			return {
+				...initialState,
+				err: action.payload,
+			}
+		case "FETCH_CURRENT_ADMIN_USER_FULFILLED":
+			return {
+				...initialState,
+				loggedUser: action.payload,
+			}
+		default: return initialState;
+	}
+}
+
 const reducers = combineReducers({
 	results: resultsReducer,
 	view: viewReducer,
 	search: searchReducer,
 	posts: postsReducer,
+	admin: adminReducers,
 });
 
 

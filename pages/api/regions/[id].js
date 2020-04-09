@@ -2,7 +2,7 @@ import database from '../../../utils/middleware';
 
 export default async function getRegions (req, res) {
 	const {id} = req.query;
-	const doc = await database(req, res).then(db => db.collection("regions").aggregate([
+	const doc = await database().then(db => db.collection("regions").aggregate([
 		{
 			$match: {_id: id},
 		},

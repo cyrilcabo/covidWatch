@@ -12,7 +12,7 @@ const Layout = (props) => {
 				<title> CovidWatch </title>
 			</Head>
 			<ThemeProvider theme={theme}>
-				<NavBar />
+				{ (props.navbar) ?props.navbar :<NavBar /> }
 				{props.children}
 			</ThemeProvider>
 		</div>

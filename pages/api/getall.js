@@ -1,7 +1,7 @@
 import database from '../../utils/middleware';
 
 export default async function getAll (req, res) {
-	const doc = await database(req, res).then(db => db.collection("regions").aggregate([
+	const doc = await database().then(db => db.collection("regions").aggregate([
 		{
 			$group: {
 				_id: 0,

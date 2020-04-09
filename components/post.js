@@ -34,7 +34,10 @@ const Post = (props) => {
 			/>
 			<Divider />
 			<CardContent>
-				<Typography color="textPrimary" component="p">
+				<Typography color="textPrimary" component="h3">
+					{props.title}
+				</Typography>
+				<Typography color="textSecondary" component="p">
 					{props.content}
 				</Typography>
 			</CardContent>

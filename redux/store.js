@@ -8,5 +8,9 @@ export const store = {
 			index: 0,
 		},
 		local: {},
+	},
+	admin: {
+		loggedUser: {},
+		state: {},
 	}
 }

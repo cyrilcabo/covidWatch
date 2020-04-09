@@ -1,7 +1,7 @@
 import database from '../../utils/middleware';
 
 export default async function getSearch (req, res) {
-	const regions = await database(req, res).then(db => db.collection("regions").aggregate([
+	const regions = await database().then(db => db.collection("regions").aggregate([
 		{
 			$project:  {
 				_id: 0,

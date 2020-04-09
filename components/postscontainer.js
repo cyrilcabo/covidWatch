@@ -30,9 +30,10 @@ const PostsContainer = (props) => {
 					:props.posts.national.hasMore;
 	const posts = items.map(item => {
 		return <Grid item xs={12} container>
-			<Post name={item.name} type={item.type} content={item.content} />
+			<Post name={item.name} type={item.type} content={item.content} title={item.title} />
 		</Grid>
 	});
+	console.log(posts);
 	return (
 		<InfiniteScroll
 			dataLength={items.length}
@@ -48,7 +49,7 @@ const PostsContainer = (props) => {
 				alignItems: "center",
 			}}
 		>
-			{(items.length) ?{posts} :<h5 style={{color: "white"}}> Sorry no posts are available </h5>}
+			{(items.length) ?posts :<h5 style={{color: "white"}}> Sorry no posts are available </h5>}
 		</InfiniteScroll>
 	);
 }
