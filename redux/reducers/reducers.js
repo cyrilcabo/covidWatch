@@ -1,7 +1,6 @@
 import {combineReducers, createStore, applyMiddleware} from 'redux';
 import {store} from '../store';
 import promise from 'redux-promise-middleware';
-//lacks fetch
 
 function resultsReducer (initialState=store.results, action) {
 	switch (action.type) {

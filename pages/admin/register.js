@@ -72,7 +72,7 @@ const Register = (props) => {
 				break;
 			case 'username':
 				checkBlank('username');
-				const response = await fetch(`http://localhost:3000/api/admin/validateusername?username=${user.username}`).then(response => response.json());
+				const response = await fetch(`https://ncovidwatch.herokuapp.com/api/admin/validateusername?username=${user.username}`).then(response => response.json());
 				setFieldState({
 					...fieldState,
 					username: (response.success) ?{error: false, msg: ''} :{error: true, msg: 'Username already exists'},
@@ -105,7 +105,7 @@ const Register = (props) => {
 				...validObj,
 			});
 		} else {
-			const response = await fetch('http://localhost:3000/api/admin/register', {
+			const response = await fetch('https://ncovidwatch.herokuapp.com/api/admin/register', {
 				method: 'POST',
 				body: JSON.stringify(user),
 				headers: {
@@ -176,7 +176,7 @@ const Register = (props) => {
 					<Button fullWidth variant="contained" color="primary" onClick={register}> Register </Button>
 				</Grid>
 				<Grid item justify="center" container>
-					<Button fullWidth variant="contained" color="secondary"> Login </Button>
+					<Button fullWidth variant="contained" color="secondary" onClick={() => Router.push('/admin/login')}> Login </Button>
 					Already registered?
 				</Grid>
 			</React.Fragment>
@@ -185,18 +185,23 @@ const Register = (props) => {
 }
 
 Register.getInitialProps = async ({req, res, store}) => {
-	const auth = await fetch('http://localhost:3000/api/admin/authenticate', {
+	const cookie = (req) ?{'Cookie': req.headers.cookie} :null;
+	const auth = await fetch('https://ncovidwatch.herokuapp.com/api/admin/authenticate', {
 		method: 'POST',
 		credentials: 'include',
 		headers: {
-			'Cookie': req.headers.cookie,
+			...cookie,
 		}
 	}).then(data => data.json());
 	if (auth.success) {
-		res.writeHead(301, {Location: '/admin/overview'})
-		res.end();
+		if (req) {
+			res.writeHead(301, {Location: '/admin/overview'})
+			res.end();
+		} else {
+			Router.replace('/admin/overview');
+		}
 	};
-	const items = await fetch("http://localhost:3000/api/admin/fetchlocations").then(data => data.json());
+	const items = await fetch("https://ncovidwatch.herokuapp.com/api/admin/fetchlocations").then(data => data.json());
 	return {items: items};
 }
 

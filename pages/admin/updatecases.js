@@ -60,7 +60,7 @@ const UpdateCases = (props) => {
 	const saveData = async () => {
 		for (let val in item.state) {
 			if (item.state[val] != props.state.city.state[val]) {
-				const result = await fetch('http://localhost:3000/api/admin/updatecases', {
+				const result = await fetch('https://ncovidwatch.herokuapp.com/api/admin/updatecases', {
 					method: 'POST',
 					body: JSON.stringify({
 						id: props.loggedUser.permissions.id.toString(),
@@ -134,7 +134,7 @@ const UpdateCases = (props) => {
 
 UpdateCases.getInitialProps = async ({req, res, store}) => {
 	const cookie = (req) ?{'Cookie': req.headers.cookie} :null;
- 	const auth = await fetch('http://localhost:3000/api/admin/authenticate', {
+ 	const auth = await fetch('https://ncovidwatch.herokuapp.com/api/admin/authenticate', {
 		method: 'POST',
 		credentials: 'include',
 		headers: {
@@ -142,8 +142,12 @@ UpdateCases.getInitialProps = async ({req, res, store}) => {
 		}
 	}).then(data => data.json());
 	if (!auth.success) {
-		res.writeHead(301, {Location: '/admin/login'})
-		res.end();
+		if (req) {
+			res.writeHead(301, {Location: '/admin/login'})
+			res.end();
+		} else {
+			Router.replace('/admin/login');
+		}
 	};
 	await store.dispatch(fetchCurrentAdminUser(req));
 	const {id, regId} = store.getState().admin.loggedUser.permissions;

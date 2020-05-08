@@ -5,7 +5,7 @@ const client = new MongoClient(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 });
 
-async function database() {
+function database() {
 	return new Promise (async (resolve) => {
 	  if (!client.isConnected()) await client.connect();
 	 const  dbClient = client;

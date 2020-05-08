@@ -3,7 +3,8 @@ import withPassport from '../../../utils/withpassport';
 const getcurrentuser = (req, res) => {
 	if (req.user)
 		res.json(req.user);
-	console.log(req);
+	else 
+		res.json({status: 'err'});
 }
 
 export default withPassport(getcurrentuser);

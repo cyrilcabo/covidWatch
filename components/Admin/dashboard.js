@@ -52,7 +52,7 @@ const useStyle = makeStyles(theme => ({
 const Dashboard = (props) => {
 	const classes = useStyle();
 	const logout = async () => {
-		const response = await fetch('http://localhost:3000/api/admin/logout').then(res => res.json());
+		const response = await fetch('https://covid-watch.now.sh/api/admin/logout').then(res => res.json());
 		if (response.success) Router.replace('/admin/login');
 	}
 	const navbar = <AppBar position="absolute" className={classes.navbar}>
@@ -61,8 +61,8 @@ const Dashboard = (props) => {
 				<Typography component={'h6'} className={classes.appTitle}>
 					CovidWatch
 				</Typography>
-				<IconButton edge="end">
-					<ExitToAppIcon onClick={logout} />
+				<IconButton edge="end" onClick={logout}>
+					<ExitToAppIcon />
 				</IconButton>
 			</Toolbar>
 		</Container>

@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 
 import {connect} from 'react-redux';
 import React from 'react';
+import Router from 'next/router';
 
 import {fetchAdminState, fetchCurrentAdminUser} from '../../redux/actions/actions';
 
@@ -42,7 +43,7 @@ const Overview = (props) => {
 
 Overview.getInitialProps = async ({req, res, store}) => {
 	const cookie = (req) ?{'Cookie': req.headers.cookie} :null;
- 	const auth = await fetch('http://localhost:3000/api/admin/authenticate', {
+ 	const auth = await fetch('https://ncovidwatch.herokuapp.com/api/admin/authenticate', {
 		method: 'POST',
 		credentials: 'include',
 		headers: {
@@ -50,8 +51,12 @@ Overview.getInitialProps = async ({req, res, store}) => {
 		}
 	}).then(data => data.json());
 	if (!auth.success) {
-		res.writeHead(301, {Location: '/admin/login'})
-		res.end();
+		if (req) {
+			res.writeHead(301, {Location: '/admin/login'})
+			res.end();
+		} else {
+			Router.replace('/admin/login');
+		}
 	};
 	await store.dispatch(fetchCurrentAdminUser(req));
 	const {id, regId} = store.getState().admin.loggedUser.permissions;

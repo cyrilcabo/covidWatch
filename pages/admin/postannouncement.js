@@ -15,6 +15,7 @@ import Dashboard from '../../components/Admin/dashboard';
 import {connect} from 'react-redux';
 import fetch from 'isomorphic-unfetch';
 import React from 'react';
+import Router from 'next/router';
 
 import {fetchAdminState, fetchCurrentAdminUser} from '../../redux/actions/actions';
 
@@ -73,7 +74,7 @@ const PostAnnouncement = (props) => {
 			return true;
 		}
 		if (valid()) {
-			await fetch('http://localhost:3000/api/admin/postannouncement', {
+			await fetch('https://ncovidwatch.herokuapp.com/api/admin/postannouncement', {
 				method: 'POST',
 				body: JSON.stringify({
 					type: filter,
@@ -143,7 +144,7 @@ const PostAnnouncement = (props) => {
 
 PostAnnouncement.getInitialProps = async ({req, res, store}) => {
 	const cookie = (req) ?{'Cookie': req.headers.cookie} :null;
- 	const auth = await fetch('http://localhost:3000/api/admin/authenticate', {
+ 	const auth = await fetch('https://ncovidwatch.herokuapp.com/api/admin/authenticate', {
 		method: 'POST',
 		credentials: 'include',
 		headers: {
@@ -151,8 +152,12 @@ PostAnnouncement.getInitialProps = async ({req, res, store}) => {
 		}
 	}).then(data => data.json());
 	if (!auth.success) {
-		res.writeHead(301, {Location: '/admin/login'})
-		res.end();
+		if (req) {
+			res.writeHead(301, {Location: '/admin/login'})
+			res.end();
+		} else {
+			Router.replace('/admin/login');
+		}
 	};
 	if (req) {
 		await store.dispatch(fetchCurrentAdminUser(req));

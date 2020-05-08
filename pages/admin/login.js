@@ -27,19 +27,18 @@ const Login = (props) => {
 	const handleUser = (e) => setUser({...user, [e.target.id]: e.target.value});
 	const login = async () => {
 		console.log(user);
-		const response = await fetch('http://localhost:3000/api/admin/login', {
+		const response = await fetch('https://ncovidwatch.herokuapp.com/api/admin/login', {
 			method: 'POST',
 			body: JSON.stringify(user),
 			headers: {
 				'content-type': 'application/json',
 			}
 		}).then(data => {
-			if (data.status == 401)
+			if (data.status == 401) {
 				setMessage('Invalid credentials!');
-			else	
-				return data.json();
-		}).then(data => {
-			if (data.success) Router.replace('/admin/overview');
+			} else {
+				Router.replace('/admin/overview');
+			}
 		});
 	}
 	return (
@@ -52,18 +51,18 @@ const Login = (props) => {
 					<h1> Login </h1>
 				</Grid>
 				<Grid item container justify="center">
-					<Typography color="green" component="p" style={{textAlign: 'center'}}> {(message.register == 'success') ?"You have successfully registered! Please login." :loginMessage} </Typography>
+					<Typography color="green" component="p" style={{textAlign: 'center'}}> {(message.register == 'success' && !loginMessage) ?"You have successfully registered! Please login." :loginMessage} </Typography>
 				</Grid>
 				<Grid item>
 					<TextField fullWidth variant="filled" id="username" value={user.username} onChange={handleUser} label="Username" className={classes.inputField}/>
-					<TextField fullWidth variant="filled" id="password" value={user.password} onChange={handleUser} label="Password" className={classes.inputField}/>
+					<TextField fullWidth variant="filled" id="password" type="password" value={user.password} onChange={handleUser} label="Password" className={classes.inputField}/>
 				</Grid>
 				<Grid item>
 					<Button fullWidth color="primary" variant="contained" onClick={login}> Login </Button>
 					<Button fullWidth color="secondary" variant="contained" onClick={() => Router.push('/admin/register')}> Register </Button>
 				</Grid>
 				<Grid item container justify="center">
-					<p color="textSecondary"> Not an admin? Visit here. </p>
+					<p color="textSecondary"> Not an admin? <a href="/">Visit here.</a> </p>
 				</Grid>
 			</React.Fragment>
 		</LoginContainer>
@@ -72,7 +71,7 @@ const Login = (props) => {
 
 Login.getInitialProps = async ({req, res}) => {
 	const cookie = (req) ?{'Cookie': req.headers.cookie} :null;
-	const auth = await fetch('http://localhost:3000/api/admin/authenticate', {
+	const auth = await fetch('https://ncovidwatch.herokuapp.com/api/admin/authenticate', {
 		method: 'POST',
 		credentials: 'include',
 		headers: {
@@ -80,8 +79,12 @@ Login.getInitialProps = async ({req, res}) => {
 		}
 	}).then(data => data.json());
 	if (auth.success) {
-		res.writeHead(301, {Location: '/admin/overview'})
-		res.end();
+		if (req) {
+			res.writeHead(301, {Location: '/admin/overview'})
+			res.end();
+		} else {
+			Router.replace('/admin/overview');
+		}
 	};
 	if (!req) {
 		return {client: true};
