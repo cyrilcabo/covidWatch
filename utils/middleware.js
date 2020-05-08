@@ -6,7 +6,6 @@ const client = new MongoClient(process.env.MONGO_URI, {
 });
 
 function database() {
-	console.log("database", process.env.MONGO_URI);
 	return new Promise (async (resolve) => {
 	  if (!client.isConnected()) await client.connect();
 	 const  dbClient = client;
