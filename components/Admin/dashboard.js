@@ -52,7 +52,7 @@ const useStyle = makeStyles(theme => ({
 const Dashboard = (props) => {
 	const classes = useStyle();
 	const logout = async () => {
-		const response = await fetch('https://covid-watch.now.sh/api/admin/logout').then(res => res.json());
+		const response = await fetch('https://ncovidwatch.herokuapp.com/api/admin/logout').then(res => res.json());
 		if (response.success) Router.replace('/admin/login');
 	}
 	const navbar = <AppBar position="absolute" className={classes.navbar}>
