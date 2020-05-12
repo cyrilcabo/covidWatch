@@ -16,7 +16,7 @@ const useStyle = makeStyles(theme => ({
 		backgroundColor: '#ffebeb',
 		display: 'flex',
 		justifyContent: 'center',
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('xs')]: {
 			height: '100%',
 		}
 	},
