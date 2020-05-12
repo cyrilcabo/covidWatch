@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper'
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-const useStyle = makeStyles({
+const useStyle = makeStyles(theme => ({
 	root: {
 		display: 'flex',
 		justifyContent: 'center',
@@ -16,8 +16,11 @@ const useStyle = makeStyles({
 		backgroundColor: '#ffebeb',
 		display: 'flex',
 		justifyContent: 'center',
+		[theme.breakpoints.down('sm'): {
+			height: 200,
+		}
 	},
-});
+}));
 
 
 
@@ -26,7 +29,7 @@ const LoginContainer = (props) => {
 	return (
 		<div>
 			<Container className={classes.root}>
-				<Grid xs={10} sm={6} item>	
+				<Grid xs={12} sm={6} item>	
 					<Paper className={classes.loginCard}>
 						<Grid xs={10} container item alignItems="stretch" direction="column" justify="center" spacing={2} style={{height: '100%'}}>
 							{props.children}
