@@ -16,6 +16,7 @@ const useStyle = makeStyles(theme => ({
 
 const LeafletMap = (props) => {
 	const {coor, name, zoom} = props.view;
+	const M_TOKEN = 'pk.eyJ1IjoiY3lyaWxjYWJvIiwiYSI6ImNrN3d2MDNsYzA1b3gzZXA3c3JmcWNzNWIifQ.rbobtmKDLApU2HFFikG4FA';
 	const classes = useStyle();
 	const marker = <Marker position={coor}>
 					<Popup> <b> {name} </b> </Popup>
@@ -30,12 +31,12 @@ const LeafletMap = (props) => {
 		>
 				<TileLayer
 					attribution={'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'}
-					url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${process.env.M_TOKEN}`}
+					url={`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${M_TOKEN}`}
 					maxZoom={12}
 					minZoom={5}
 					tileSize={512}
 					zoomOffset = {-1}
-					accessToken={process.env.M_TOKEN}
+					accessToken={M_TOKEN}
 					id = 'mapbox/streets-v11'
 				/>
 				{marker}
