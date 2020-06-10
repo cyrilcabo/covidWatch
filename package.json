@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next -p $PORT"
+    "start": "node server.js"
   },
   "keywords": [
     "covid",
