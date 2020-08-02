@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 
-const host = 'https://ncovidwatch.herokuapp/com'
+const host = 'https://ncovidwatch.herokuapp.com'
 //const host = 'http://localhost:3000';
 
 export function fetchCurrentAdminUser (req) {
