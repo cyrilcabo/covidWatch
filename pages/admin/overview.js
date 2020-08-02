@@ -43,7 +43,7 @@ const Overview = (props) => {
 
 Overview.getInitialProps = async ({req, res, store}) => {
 	const cookie = (req) ?{'Cookie': req.headers.cookie} :null;
- 	const auth = await fetch('https://ncovidwatch.herokuapp.com/admin/authenticate', {
+ 	const auth = await fetch('https://ncovidwatch.herokuapp.com/api/admin/authenticate', {
 		method: 'POST',
 		credentials: 'include',
 		headers: {
