@@ -30,6 +30,7 @@ const Filter = (props) => {
 				handleLocation={props.handleLocation}
 				items={props.items}
 				resetState={props.resetState}
+				submit={() => null}
 			/>
 		</Grid>
 	</FormControl>

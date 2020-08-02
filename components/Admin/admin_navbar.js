@@ -26,6 +26,10 @@ const useStyle = makeStyles(theme => ({
 	title: {
 		fontSize: '2rem',
 		textAlign: 'center',
+		margin: '20px 0px 10px 0px',
+		[theme.breakpoints.down('xs')]: {
+			fontSize: '1.5rem',
+		}
 	},
 	divider: {
 		width: '80%',
@@ -37,6 +41,9 @@ const useStyle = makeStyles(theme => ({
 			display: 'none',
 		}
 	},
+	brand: {
+		fontWeight: 550,
+	}
 }));
 
 const navItems = [
@@ -71,7 +78,7 @@ const AdminNavbar = (props) => {
 				<Grid container item xs={10} justify="center">
 					<Grid item container xs={12} justify="center">	
 						<Typography component={"h5"} className={classes.title}>
-							CovidWatch Admin
+							<span className={classes.brand}> <span style={{color: "#b42d1d"}}>COVID</span>WATCH</span> ADMIN 
 						</Typography>
 					</Grid>
 					<Divider className={classes.divider} />

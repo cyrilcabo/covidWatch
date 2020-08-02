@@ -26,7 +26,6 @@ const Login = (props) => {
 	const message = (props.client) ?Router.query :'';
 	const handleUser = (e) => setUser({...user, [e.target.id]: e.target.value});
 	const login = async () => {
-		console.log(user);
 		const response = await fetch('https://ncovidwatch.herokuapp.com/api/admin/login', {
 			method: 'POST',
 			body: JSON.stringify(user),
@@ -41,12 +40,16 @@ const Login = (props) => {
 			}
 		});
 	}
+	const submit = (e) => {
+		e.preventDefault();
+		login();
+	}
 	return (
 		<LoginContainer>
 			<Head>
 				<title> Admin Login </title>
 			</Head>
-			<React.Fragment>
+			<form onSubmit={submit}>
 				<Grid item container justify="center" alignItems="flex-end">
 					<h1> Login </h1>
 				</Grid>
@@ -61,10 +64,11 @@ const Login = (props) => {
 					<Button fullWidth color="primary" variant="contained" onClick={login}> Login </Button>
 					<Button fullWidth color="secondary" variant="contained" onClick={() => Router.push('/admin/register')}> Register </Button>
 				</Grid>
+				<input type="submit" style={{display: 'none'}} />
 				<Grid item container justify="center">
 					<p color="textSecondary"> Not an admin? <a href="/">Visit here.</a> </p>
 				</Grid>
-			</React.Fragment>
+			</form>
 		</LoginContainer>
 	);
 }

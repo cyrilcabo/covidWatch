@@ -123,12 +123,13 @@ const useStyle = makeStyles(theme => ({
 
 const Index = (props) => {
 	const classes = useStyle();
-	const [loc, setLocation] = React.useState({name: ""});
+	const [location, setLocation] = React.useState({name: ""});
 	const [view, setView] = React.useState("Philippines");
 	const resetState = async () => {
 		setView("Philippines");
 	}
-	const setSearch = async () => {
+	const setSearch = async (param) => {
+		const loc = param ?param :location;
 		if (loc.name) {
 			if (!props.results[loc.name]) {
 				const data = await fetch(`https://nominatim.openstreetmap.org/search?q=${loc.name}&format=json&countrycodes=PH&limit=1`);
@@ -181,7 +182,7 @@ const Index = (props) => {
 								<FormControl fullWidth className={classes.searchContainer} >
 									<LocationSearch
 										items={props.search}
-										searchValue={loc.name}
+										searchValue={location.name}
 										setSearch={setSearch}
 										resetState={resetState}
 										handleLocation={setLocation}

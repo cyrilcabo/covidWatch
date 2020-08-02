@@ -10,14 +10,18 @@ const useStyle = makeStyles(theme => ({
 		alignItems: 'center',
 		height: '100%',
 	},
-	loginCard: {
+	loginCardContainer: {
 		marginTop: 40,
-		height: '80vh',
+		maxHeight: 500,
+	},
+	loginCard: {
+		height: '100%',
+		height: 500,
 		backgroundColor: '#ffebeb',
 		display: 'flex',
 		justifyContent: 'center',
-		[theme.breakpoints.down('xs')]: {
-			height: '100%',
+		[theme.breakpoints.down('md')]: {
+			height: 400,
 		}
 	},
 }));
@@ -29,7 +33,7 @@ const LoginContainer = (props) => {
 	return (
 		<div>
 			<Container className={classes.root}>
-				<Grid xs={12} sm={6} item>	
+				<Grid xs={12} sm={6} item className={classes.loginCardContainer}>	
 					<Paper className={classes.loginCard}>
 						<Grid xs={10} container item alignItems="stretch" direction="column" justify="center" spacing={2} style={{height: '100%'}}>
 							{props.children}
@@ -39,7 +43,7 @@ const LoginContainer = (props) => {
 			</Container>	
 			<style global jsx>{`
 				body {
-					background-color: #f54d41;
+					background-color: #98362f;
 					height: 100%;
 				}
 			`}</style>

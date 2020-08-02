@@ -19,7 +19,8 @@ const useStyle = makeStyles({
 		width: '100%',
 		display: 'flex',
 		padding: 5,
-		minHeight: '50vh',
+		marginTop: 50,
+		minHeight: 400,
 	},
 	divider: {
 		width: '100%',

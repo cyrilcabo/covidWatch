@@ -22,7 +22,8 @@ const AdminNavbar = dynamic(() => import('./admin_navbar'), {ssr: false});
 
 const useStyle = makeStyles(theme => ({
 	root: {
-		marginTop: 80,
+		marginTop: 50,
+		marginBottom: 100,
 		width: '80%',
 		[theme.breakpoints.down('sm')]: {
 			width: '100%',
@@ -34,17 +35,18 @@ const useStyle = makeStyles(theme => ({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		paddingBottom: 20,
-		minHeight: '80vh',
+		paddingBottom: 60,
+		minHeight: 500,
 	},
 	navbar: {
-		backgroundColor: '#7b3636',
+		backgroundColor: 'black',
 	},
 	toolbar: {
 		display: 'flex',
 	},
 	appTitle: {
-		fontSize: '1.5rem',
+		fontSize: '1.2rem',
+		margin: 0,
 		flex: 1,
 	},
 }));
@@ -58,18 +60,17 @@ const Dashboard = (props) => {
 	const navbar = <AppBar position="absolute" className={classes.navbar}>
 		<Container>
 			<Toolbar className={classes.toolbar}>
-				<Typography component={'h6'} className={classes.appTitle}>
-					CovidWatch
-				</Typography>
+				<h4 className={classes.appTitle}> <span style={{color: '#b42d1d'}}>COVID</span>WATCH </h4>
 				<IconButton edge="end" onClick={logout}>
-					<ExitToAppIcon />
+					<ExitToAppIcon style={{fill: 'white'}} />
 				</IconButton>
 			</Toolbar>
 		</Container>
 	</AppBar>;
 	
 	return (
-		<Layout navbar={navbar} >
+		<Layout navbar={navbar} noFooter>
+			<Toolbar />
 			<Container className={classes.root}>	
 				<AdminNavbar/>
 				<Paper className={classes.container} square>

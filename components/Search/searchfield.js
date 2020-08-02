@@ -22,10 +22,20 @@ const useStyle = makeStyles({
 
 const SearchField = (props) => {
 	const classes = useStyle();
+
+	const submit = async (e) => {
+		e.preventDefault();
+		if (props.results.length) {
+			new Promise((resolve) => {
+				props.handleSelectLocation(props.results[0]);
+				resolve(props.results[0]);
+			}).then((location) => props.submit(location));
+		}
+	}
 	
 	return (
 		<React.Fragment>
-			<Paper  onSubmit={(e) => e.preventDefault()} className={classes.search} id="container" component="form">
+			<Paper  onSubmit={submit} className={classes.search} id="container" component="form">
 				<InputBase onChange={props.handleSearch} value={props.search} className={classes.input} placeholder="Search regions/cities..." />
 				{props.search 
 					?<IconButton onClick={props.handleClear} color="secondary">

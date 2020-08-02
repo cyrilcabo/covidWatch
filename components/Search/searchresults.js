@@ -23,11 +23,17 @@ const useStyle = makeStyles({
 
 const SearchResults = (props) => {
 	const classes = useStyle();
+	const submit = (item) => {
+		new Promise((resolve) => {
+			props.handleSelectLocation(item);
+			resolve(item);
+		}).then(location => props.submit(location));
+	}
 	const results = props.results.map((item, i) => {
 		if (i <= 5) {	
 			return (
 				<React.Fragment key={i}>
-					<ListItem onClick={props.handleSelectLocation.bind(this, item)} className={classes.resultItem}>
+					<ListItem onClick={submit.bind(this, item)} className={classes.resultItem}>
 						<ListItemText
 							primary={
 								<Grid container>

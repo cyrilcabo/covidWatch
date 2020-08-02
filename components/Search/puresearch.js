@@ -30,7 +30,10 @@ const PureSearch = (props) => {
 			<SearchField 
 				handleClear={handleClear} 
 				handleSearch={handleSearch}
-				search={search} 
+				search={search}
+				results={results} 
+				submit={props.submit}
+				handleSelectLocation={handleSelectLocation}
 			/>
 			<SearchResults 
 				anchorEl={anchorEl}
@@ -38,6 +41,7 @@ const PureSearch = (props) => {
 				results={results} 
 				handleClickAway={handleClickAway} 
 				handleSelectLocation={handleSelectLocation}
+				submit={props.submit}
 			/>
 		</React.Fragment>
 	);

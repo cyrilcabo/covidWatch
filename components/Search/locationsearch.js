@@ -32,6 +32,7 @@ const LocationSearch = (props) => {
 					items={props.items}
 					handleLocation={props.handleLocation}
 					resetState={props.resetState}
+					submit={props.setSearch}
 				/>
 			</Grid>
 			<Grid item xs={12} md={2}>

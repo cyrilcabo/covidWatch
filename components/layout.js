@@ -19,7 +19,7 @@ const Layout = (props) => {
 			<ThemeProvider theme={theme}>
 				{ (props.navbar) ?props.navbar :<NavBar navs={navs} /> }
 				{props.children}
-				<Footer navs={navs} />
+				{ props.noFooter ?"" :<Footer navs={navs} /> }
 			</ThemeProvider>
 			<style jsx global>{`
 				body {

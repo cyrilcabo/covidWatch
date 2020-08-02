@@ -33,7 +33,7 @@ const useStyle = makeStyles(theme => ({
 	},
 	announcement: {
 		'& > div.MuiInputBase-root': {
-			height: '40vh',
+			height: 300,
 			display: 'flex',
 			alignItems: 'flex-start',
 		},
@@ -100,7 +100,7 @@ const PostAnnouncement = (props) => {
 	}
 	return (
 		<Dashboard>
-			<Grid item container xs={12} justify="center">
+			<Grid item container xs={12} justify="center" style={{marginTop: 40}}>
 				<Grid item container xs={12} justify="center" spacing={1}>
 					<Grid item xs={12} md={6}>
 						<Paper className={classes.locDetails} elevation={1} square>
