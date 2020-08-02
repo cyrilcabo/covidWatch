@@ -21,7 +21,8 @@ const useStyle = makeStyles(theme => ({
 		display: 'flex',
 		justifyContent: 'center',
 		[theme.breakpoints.down('md')]: {
-			height: 400,
+			minHeight: 400,
+
 		}
 	},
 }));
