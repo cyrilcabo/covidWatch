@@ -1,15 +1,22 @@
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import SearchIcon from '@material-ui/icons/Search';
 
 import PureSearch from './puresearch';
 
 const useStyle = makeStyles(theme => ({
 	button: {
 		height: "100%",
+		borderRadius: 0,
+		fontSize: '1.5rem',
+		lineHeight: '25px',
+		fontWeight: 550,
+		backgroundColor: '#b42d1d',
 		[theme.breakpoints.down("sm")]: {
 			marginTop: 10,
+		},
+		[theme.breakpoints.down('xs')]: {
+			fontSize: '1rem',
 		}
 	},
 }));
@@ -34,7 +41,7 @@ const LocationSearch = (props) => {
 					onClick={props.setSearch} 
 					variant="contained" 
 					color="primary"> 
-					Search <SearchIcon />
+					Watch
 				</Button>
 			</Grid>
 		</Grid>

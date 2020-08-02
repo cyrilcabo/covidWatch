@@ -7,24 +7,12 @@ const useStyle = makeStyles({
 		width: "100%",
 		marginTop: 20,
 	},
-	span: {
-		height: 10,
-		width: 10,
-		borderRadius: 5,
-		backgroundColor: "gray",
-		boxShadow: "0 0 0 10",
-		marginLeft: 5,
-		marginRight: 5,
-	},
 })
 
 const SpanEnd = () => {
 	const classes = useStyle();
-	const span = [1,2,3].map((i) => {
-		return <span className={classes.span} key={i}></span>
-	});
 	return <div className={classes.root}>
-		{span}
+		<h4 style={{margin: 0}}> -- <span style={{color: '#b42d1d'}}>END</span> -- </h4>
 	</div>
 }
 

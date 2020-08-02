@@ -6,8 +6,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
-			<meta name="viewport" content="width=device-width, user-scalable=no" />
+        <Head> 
+          <meta name="description" content="Covidwatch is a web application aimed to monitor COVID cases in the Philippines." />
+          <meta name="title" content="CovidwWatch" />
+          <link rel="icon" href="/images/Logo.png" />
         </Head>
         <body>
           <Main />

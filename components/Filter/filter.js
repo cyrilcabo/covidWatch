@@ -11,15 +11,10 @@ import PureSearch from '../Search/puresearch';
 const useStyle = makeStyles(theme => ({
 	filter: {
 		"& label.MuiFormLabel-root": {
-			color: "gray",
 			zIndex: 0,
 		},
 		"& div.MuiInputBase-root": {
 			border: 1,
-			color: "white",
-			"& svg.MuiSelect-icon": {
-				color: "white",
-			}
 		},
 		marginBottom: 5,
 	},

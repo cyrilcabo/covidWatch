@@ -1,8 +1,22 @@
+
+//Material components
+import Hidden from '@material-ui/core/Hidden';
+import Container from '@material-ui/core/Container';
+import Toolbar from '@material-ui/core/Toolbar';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
+
+//Utils
 import Link from 'next/link';
-import {Typography, Hidden, Container, Toolbar, Appbar, Button, IconButton, AppBar, Grid} from '@material-ui/core/';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import {useState} from 'react';
+
+//Custom component
 import NavDrawer from './navdrawer';
+
+//Matrial icon
 import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyle = makeStyles( theme => ({
@@ -16,9 +30,9 @@ const useStyle = makeStyles( theme => ({
 		},
 	},
 	linkContainer:{
+		textTransform: 'none',
 		[theme.breakpoints.up("md")]: {
-			marginLeft: 10,
-			marginRight: 10,
+			marginLeft: 20,
 		}
 	},
 	links: {
@@ -36,43 +50,44 @@ const useStyle = makeStyles( theme => ({
 	},
 	title: {
 		flex: 1,
+		color: 'white',
 	}
 }));
 
-const NavBar = () => {
+const NavBar = (props) => {
 	const classes = useStyle();
 	const [toggle, toggleDrawer] = useState(false);
-	let navs = [{name: "Home", link: "/"}, {name: "Announcements", link: "/announcements"}, {name: "About", link: "/about"}];
-	let navLinks = navs.map((item, index) => {
+	const navLinks = props.navs.map((item, index) => {
 		return <Link href={item.link} key={index}>
 					<Button className={classes.linkContainer} >
-						<Typography variant="h5" component="h6" className={classes.links}>
+						<p className={classes.links}>
 							{item.name}
-						</Typography>
+						</p>
 					</Button>
 				</Link>
 	});
-	let drawerToggle = () => toggleDrawer((toggle) ?false :true);
+	const drawerToggle = () => toggleDrawer((toggle) ?false :true);
 	return (
 		<div className={classes.root}>
 			<AppBar position="absolute" color="secondary" className={classes.appbar}>
-				<Container>
+				<Container style={{display: 'flex', justifyContent: 'center'}}>
 						<Toolbar className={classes.navbar}>
 							<Hidden smUp>
 								<IconButton edge="start" onClick={drawerToggle} >
 									<MenuIcon style={{color: "white"}} />
 								</IconButton>
 							</Hidden>
-							<NavDrawer nav={navs} toggle={toggle} toggleDrawer={drawerToggle}/>
-							<Typography variant="h5" component="h6" className={classes.title} >
-								CovidWatch
-							</Typography>
+							<NavDrawer nav={props.navs} toggle={toggle} toggleDrawer={drawerToggle}/>
+							<h3 className={classes.title} >
+								<span style={{color: '#b42d1d'}}>COVID</span>WATCH
+							</h3>
 							<Hidden xsDown>
 								{navLinks}
 							</Hidden>
-						</Toolbar>	
+						</Toolbar>
 				</Container>
 			</AppBar>
+			<Toolbar />
 		</div>
 	);
 };

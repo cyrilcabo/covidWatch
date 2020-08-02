@@ -16,32 +16,38 @@ const useStyles = makeStyles({
 		margin: 10,
 		textAlign: "center",
 	},
+	title: {
+		fontSize: '1.1rem',
+		margin: 0,
+		fontFamily: 'serif',
+	},
+	brandLogo: {
+		height: '1rem',
+	}
 });
 
 let NavDrawer = (props) => {
-	const icons = [<HomeIcon />, <InfoIcon />, <AnnouncementIcon />];
+	const icons = [<HomeIcon />, <AnnouncementIcon />, <InfoIcon />];
 	const classes = useStyles();
 	let navDrawer = props.nav.map((link, index) => {
 		return (
-		<div key={index}>
+		<Link key={index} href={link.link}>
 			<ListItem button>
 				<ListItemIcon> {icons[index]} </ListItemIcon>
 				<ListItemText primary={
-					<Link href={link.link} >
-						<Typography component={"h5"}>
-							{link.name}
-						</Typography>
-					</Link>
+					<Typography component={"h5"}>
+						{link.name}
+					</Typography>
 				} />
 			</ListItem>
-		</div>
+		</Link>
 		);
 	});
 	return (		
 		<Hidden mdUp>
 			<Drawer open={props.toggle} onClose={props.toggleDrawer} className={classes.root}>
 				<ListSubheader color="inherit" className={classes.listHeader}> 
-					<Typography variant="h6" component="h5"> CovidWatch </Typography>
+					<h4 className={classes.title}> <span style={{color: '#b42d1d'}}>C<img className={classes.brandLogo} src="/images/Logo.png" />VID</span>WATCH </h4>
 				</ListSubheader>
 				<Divider component="li" />
 				<div className={classes.fullList}>

@@ -26,8 +26,8 @@ const SearchResults = (props) => {
 	const results = props.results.map((item, i) => {
 		if (i <= 5) {	
 			return (
-				<React.Fragment>
-					<ListItem key={i} onClick={props.handleSelectLocation.bind(this, item)} className={classes.resultItem}>
+				<React.Fragment key={i}>
+					<ListItem onClick={props.handleSelectLocation.bind(this, item)} className={classes.resultItem}>
 						<ListItemText
 							primary={
 								<Grid container>

@@ -6,7 +6,7 @@ import React from 'react';
 const useStyle = makeStyles(theme => ({
 	root: {
 		height: "100%",
-		width: "60%",
+		width: "100%",
 		[theme.breakpoints.down("sm")]: {
 			width: "100%"
 		}

@@ -28,19 +28,18 @@ const PostsContainer = (props) => {
 	const more = (props.filter != "national")
 					?(!!props.posts.local[props.items.name] && props.posts.local[props.items.name].hasMore)
 					:props.posts.national.hasMore;
-	const posts = items.map(item => {
-		return <Grid item xs={12} container>
+	const posts = items.map((item, index) => {
+		return <Grid item xs={12} key={index} container>
 			<Post name={item.name} type={item.type} content={item.content} title={item.title} />
 		</Grid>
 	});
-	console.log(posts);
 	return (
 		<InfiniteScroll
 			dataLength={items.length}
 			next={fetchNext}
 			hasMore={more}
-			loader={<h4 style={{textAlign: "center", color: "white"}}> Loading more items... </h4>}
-			endMessage={<SpanEnd />}
+			loader={<h4 style={{textAlign: "center", color: "black"}}> Loading more items... </h4>}
+			endMessage={(items.length) ?<SpanEnd /> :""}
 			style={{
 				width: "100%",
 				display: "flex",
@@ -49,7 +48,7 @@ const PostsContainer = (props) => {
 				alignItems: "center",
 			}}
 		>
-			{(items.length) ?posts :<h5 style={{color: "white"}}> Sorry no posts are available </h5>}
+			{(items.length) ?posts :<h5 style={{color: "#b42d1d", fontSize: '1.3rem'}}> Sorry no announcements are available. </h5>}
 		</InfiniteScroll>
 	);
 }

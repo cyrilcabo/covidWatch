@@ -12,9 +12,23 @@ const useStyle = makeStyles({
 		width: "100%",
 		margin: 10,
 		flex: 1,
+		boxShadow: '0px 0px 3px gray',
 	},
 	avatar: {
 		zIndex: 10,
+		backgroundColor: 'black',
+		color: 'white',
+	},
+	titleHolder: {
+		'& span.MuiCardHeader-title': {
+			fontFamily: 'serif',
+			fontSize: '1.2rem',	
+			fontWeight: 540,
+		}
+	},
+	postTitle: {
+		fontSize: '1.4rem',
+		fontWeight: 550
 	}
 })
 
@@ -31,13 +45,14 @@ const Post = (props) => {
 				}
 				title={props.name}
 				subheader={props.type}
+				className={classes.titleHolder}
 			/>
 			<Divider />
 			<CardContent>
-				<Typography color="textPrimary" component="h3">
+				<Typography className={classes.postTitle} component="h3">
 					{props.title}
 				</Typography>
-				<Typography color="textSecondary" component="p">
+				<Typography color="textPrimary" component="p">
 					{props.content}
 				</Typography>
 			</CardContent>

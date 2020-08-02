@@ -14,24 +14,44 @@ import {connect} from 'react-redux';
 import {getSearch, fetchNationalPosts, fetchLocalRegionPosts, fetchLocalCityPosts} from '../redux/actions/actions';
 
 const useStyle = makeStyles(theme => ({
-	root: {
-		display: "flex",
-		justifyContent: "center",
-		minHeight: "80vh",
-	},
 	titleContainer: {
-		[theme.breakpoints.down("sm")]: {
-			justifyContent: "center",
-		},
+		justifyContent: 'space-between',
+		margin: '80px 0px 15px 0px',
 	},
 	title: {
-		fontSize: "2.5rem",
-		color: "white",
+		fontSize: '2.4rem',
+		[theme.breakpoints.down('md')]: {
+			fontSize: '2rem'
+		},
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '1.5rem',
+		},
 	},
-	divider: {
-		backgroundColor: "gray",
-		height: 2,
-		marginTop: 10,
+	container: {
+		backgroundColor: '#f8f8f8',
+		padding: '20px 0px',
+		marginBottom: 60,
+	},
+	postContainer: {
+		minHeight: 500,
+		backgroundColor: 'white',
+		boxShadow: '0px 0px 5px gray',
+		padding: '20px 0px',
+		borderRadius: '2px',
+		position: 'relative'
+	},
+	design: {
+		position: 'absolute',
+		height: 5,
+		width: '100%'
+	},
+	designTop: {
+		backgroundColor: '#b42d1d',
+		top: 0,
+	},
+	designBottom: {
+		backgroundColor: 'black',
+		bottom: 0,
 	},
 	postsContainer: {
 		"& > div.infinite-scroll-component__outerdiv": {
@@ -39,19 +59,6 @@ const useStyle = makeStyles(theme => ({
 		}
 	},
 }));
-
-const db = [
-	{
-		name: "Tacloban City",
-		type: "Local",
-		content: "This is my first announcement!",
-	},
-	{
-		name: "Quezon City",
-		type: "National",
-		content: "This is a national broadcast!",
-	},
-];
 
 
 const Announcements = (props) => {
@@ -80,28 +87,27 @@ const Announcements = (props) => {
 	const resetState = () => false;
 	return (
 		<Layout>
-			<Body className={classes.root}>
-				<Grid item container xs={12} md={10} alignItems="flex-start">
-					<Grid item xs={12} container justify="center">
-						<Grid item xs={12} md={8} className={classes.titleContainer} container >
-							<Typography component={"h4"} className={classes.title}>
-								Announcements
-							</Typography>
-						</Grid>
-						<Grid item xs={11} md={4} container>
-							<Filter 
-								resetState={resetState}
-								handleLocation={setLocation}
-								items={props.search}
-								searchValue={loc.name}
-								setView={setView}
-								currentView={currentView}
-							/>
-						</Grid>
-						<Grid item xs={12}>
-							<Divider className={classes.divider} />
-						</Grid>
+			<Grid item xs={12} container justify="center">
+				<Grid item xs={11} md={10} container alignItems="center" className={classes.titleContainer}>
+					<Grid xs={12} item sm={8} lg={9}>
+						<h1 className={classes.title}> <span style={{color: '#b42d1d'}}>COVID</span> ANNOUNCEMENTS </h1>
 					</Grid>
+					<Grid item xs={12} sm={4} lg={3}>
+						<Filter 
+							resetState={resetState}
+							handleLocation={setLocation}
+							items={props.search}
+							searchValue={loc.name}
+							setView={setView}
+							currentView={currentView}
+						/>
+					</Grid>
+				</Grid>
+			</Grid>
+			<Grid item xs={12} container justify="center" className={classes.container}>
+				<Grid item container xs={11} md={10} className={classes.postContainer}>
+					<div className={[classes.design, classes.designTop].join(' ')} />
+					<div className={[classes.design, classes.designBottom].join(' ')} />
 					<Grid item xs={12} container justify="center" className={classes.postsContainer}>
 						<PostsContainer 
 							filter={currentView} 
@@ -113,7 +119,7 @@ const Announcements = (props) => {
 						/>
 					</Grid>
 				</Grid>
-			</Body>
+			</Grid>
 		</Layout>
 	);
 }
