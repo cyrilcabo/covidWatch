@@ -75,7 +75,7 @@ const NavBar = (props) => {
 			<AppBar position="absolute" color="secondary" className={classes.appbar}>
 				<Container style={{display: 'flex', justifyContent: 'center'}}>
 						<Toolbar className={classes.navbar}>
-							<Hidden smUp>
+							<Hidden mdUp>
 								<IconButton edge="start" onClick={drawerToggle} >
 									<MenuIcon style={{color: "white"}} />
 								</IconButton>
@@ -84,7 +84,7 @@ const NavBar = (props) => {
 							<h3 className={classes.title} >
 								<span style={{color: '#b42d1d'}}>COVID</span>WATCH
 							</h3>
-							<Hidden xsDown>
+							<Hidden smDown>
 								{navLinks}
 							</Hidden>
 						</Toolbar>
