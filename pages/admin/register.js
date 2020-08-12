@@ -200,9 +200,10 @@ Register.getInitialProps = async ({req, res, store}) => {
 		} else {
 			Router.replace('/admin/overview');
 		}
-	};
-	const items = await fetch("https://ncovidwatch.herokuapp.com/api/admin/fetchlocations").then(data => data.json());
-	return {items: items};
+	} else {
+		const items = await fetch("https://ncovidwatch.herokuapp.com/api/admin/fetchlocations").then(data => data.json());
+		return {items: items};
+	}
 }
 
 export default connect(state => ({}))(Register);
