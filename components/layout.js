@@ -8,7 +8,7 @@ import Footer from './Footer/footer';
 const theme = createMuiTheme();
 
 const Layout = (props) => {
-	const navs = [{name: "Home", link: "/"}, {name: "Announcements", link: "/announcements"}, {name: "About", link: "/about"}];
+	const navs = [{name: "Home", link: "/"}, {name: "Announcements", link: "/announcements"}, {name: "About", link: "/about"}, {name: "Admin", link: "/admin/overview"}];
 
 	return (
 		<div>
