@@ -3,6 +3,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import AnnouncementIcon from '@material-ui/icons/Announcement';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import Link from 'next/link';
 
 const useStyles = makeStyles({
@@ -27,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 let NavDrawer = (props) => {
-	const icons = [<HomeIcon />, <AnnouncementIcon />, <InfoIcon />];
+	const icons = [<HomeIcon />, <AnnouncementIcon />, <InfoIcon />, <SupervisorAccountIcon />];
 	const classes = useStyles();
 	let navDrawer = props.nav.map((link, index) => {
 		return (
