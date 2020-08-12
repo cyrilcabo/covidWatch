@@ -149,10 +149,11 @@ UpdateCases.getInitialProps = async ({req, res, store}) => {
 		} else {
 			Router.replace('/admin/login');
 		}
-	};
-	await store.dispatch(fetchCurrentAdminUser(req));
-	const {id, regId} = store.getState().admin.loggedUser.permissions;
-	await store.dispatch(fetchAdminState(regId, id));
+	} else {
+		await store.dispatch(fetchCurrentAdminUser(req));
+		const {id, regId} = store.getState().admin.loggedUser.permissions;
+		await store.dispatch(fetchAdminState(regId, id));
+	}	
 }
 
 const mapDispatchToProps = {
