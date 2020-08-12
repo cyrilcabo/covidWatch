@@ -28,6 +28,7 @@ const useStyle = makeStyles(theme => ({
 		alignItems: 'center',
 		[theme.breakpoints.down('sm')]: {
 			justifyContent: 'center',
+			fontSize: '1.5rem'
 		}
 		
 	},
