@@ -39,6 +39,9 @@ const useStyle = makeStyles( theme => ({
 		color: "white",
 		fontSize: 14,
 		margin: 0,
+		'&:hover': {
+			color: '#b42d1d',
+		}
 	},
 	navbar: {
 		display: "flex",
