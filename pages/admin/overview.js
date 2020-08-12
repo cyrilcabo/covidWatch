@@ -27,13 +27,21 @@ const Overview = (props) => {
 					</Grid>
 				</Grid>
 				<Grid xs={12} item container justify="space-around" spacing={1}>
-					<Grid xs={12} md={5} justify="center" item container>
-						<Chart city={props.state.city} pLocal={props.state.region} />
-						City:Region ratio
+					<Grid xs={12} md={5} justify="center" item container direction="column" alignItems="center">
+						<Grid item>
+							<Chart city={props.state.city} pLocal={props.state.region} />
+						</Grid>
+						<Grid item>	
+							City:Region ratio
+						</Grid>
 					</Grid>
-					<Grid xs={12} md={5} justify="center" item container>
-						<Chart city={props.state.city} pLocal={props.state.country} />
-						City:Country ratio
+					<Grid xs={12} md={5} justify="center" item container direction="column" alignItems="center">
+						<Grid item>
+							<Chart city={props.state.city} pLocal={props.state.country} />
+						</Grid>
+						<Grid item>	
+							City:Country ratio
+						</Grid>
 					</Grid>
 				</Grid>
 			</Grid>
