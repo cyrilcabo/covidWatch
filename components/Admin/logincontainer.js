@@ -34,7 +34,7 @@ const LoginContainer = (props) => {
 	return (
 		<div>
 			<Container className={classes.root}>
-				<Grid xs={12} sm={6} item className={classes.loginCardContainer}>	
+				<Grid xs={12} sm={10} md={8} lg={6} item className={classes.loginCardContainer}>	
 					<Paper className={classes.loginCard}>
 						<Grid xs={10} container item alignItems="stretch" direction="column" justify="center" spacing={2} style={{height: '100%'}}>
 							{props.children}
