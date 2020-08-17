@@ -20,6 +20,11 @@ import Router from 'next/router';
 import {fetchAdminState, fetchCurrentAdminUser} from '../../redux/actions/actions';
 
 const useStyle = makeStyles(theme => ({
+	root: {
+		marginTop: 40,
+		[theme.breakpoints.down('xs')]: {
+			padding: '0px 5px',
+		},
 	locDetails: {
 		padding: 5,
 		fontSize: '2rem',
@@ -101,7 +106,7 @@ const PostAnnouncement = (props) => {
 	}
 	return (
 		<Dashboard>
-			<Grid item container xs={12} justify="center" style={{marginTop: 40}}>
+			<Grid item container xs={12} justify="center" className={classes.root}>
 				<Grid item container xs={12} justify="center" spacing={1}>
 					<Grid item xs={12} md={6}>
 						<Paper className={classes.locDetails} elevation={1} square>
