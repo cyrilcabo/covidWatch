@@ -27,6 +27,9 @@ const useStyle = makeStyles(theme => ({
 		width: '80%',
 		[theme.breakpoints.down('sm')]: {
 			width: '100%',
+		},
+		[theme.breakpoints.down('xs')]: {
+			padding: 0,
 		}
 	},
 	container: {
