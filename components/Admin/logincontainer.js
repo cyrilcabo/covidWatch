@@ -9,10 +9,19 @@ const useStyle = makeStyles(theme => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 		height: '100%',
+		[theme.breakpoints.down('xs')]: {
+			padding: 0,
+		}
 	},
 	loginCardContainer: {
-		marginTop: 40,
+		margin:'80px 0px',
 		maxHeight: 500,
+		[theme.breakpoints.down('sm')]: {
+			margin: '60px 0px',
+		},
+		[theme.breakpoints.down('xs')]: {
+			margin: '40px 0px',
+		}
 	},
 	loginCard: {
 		height: '100%',
