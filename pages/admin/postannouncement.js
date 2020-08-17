@@ -25,6 +25,7 @@ const useStyle = makeStyles(theme => ({
 		[theme.breakpoints.down('xs')]: {
 			padding: '0px 5px',
 		},
+	},
 	locDetails: {
 		padding: 5,
 		fontSize: '2rem',
