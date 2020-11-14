@@ -149,7 +149,7 @@ const About = () => {
 								<p> CovidWatch was created, and is developed by <span className={classes.primary}>Alpha Development</span> </p>
 							</Grid>
 							<Grid item>
-								<a href="https://github.com/cyrilcabo" target="_blank"> https://github.com/cyrilcabo  </a>
+								<a href="https://alphadevop.co" target="_blank"> https://alphadevop.co  </a>
 							</Grid>
 							<Grid item>
 								<a href="mailto:cyrilcabo@gmail.com"> cyrilcabo@gmail.com </a>
